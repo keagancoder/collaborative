@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--https://juejin.cn/post/6972538940855173151-->
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logPath">${sys:user.dir}/logs</Property>
+        <Property name="logPattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{1.1}:%L %n%m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+
+        <!-- Rolling File Appender -->
+        <RollingFile name="RollingFileWarn" fileName="${logPath}/core-warn.log"
+                     filePattern="${logPath}/$${date:yyyy-MM}/core-warn-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <RollingFile name="RollingFileInfo" fileName="${logPath}/core-all.log"
+                     filePattern="${logPath}/$${date:yyyy-MM}/core-all-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Console Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileInfo"/>
+        </Root>
+
+        <!-- Rolling File Logger -->
+        <Logger name="org.springframework" level="INFO"/>
+    </Loggers>
+</Configuration>

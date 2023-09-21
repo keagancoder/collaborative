@@ -1,0 +1,6 @@
+spring:
+  thymeleaf:
+    # default value
+    prefix: classpath:/templates/
+    cache: false
+    suffix: .html
