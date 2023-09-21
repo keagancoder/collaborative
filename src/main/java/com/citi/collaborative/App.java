@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CollaborativeApplication {
+public class App {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CollaborativeApplication.class, args);
+		SpringApplication.run(App.class, args);
 	}
 
 }
