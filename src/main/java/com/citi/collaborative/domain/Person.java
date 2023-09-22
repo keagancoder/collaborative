@@ -55,6 +55,11 @@ public class Person extends CommonDomain {
     private String function;
     private String status;
 
+
+    public static PersonBuilder builder() {
+        return new PersonBuilder();
+    }
+
     public static class PersonBuilder {
         private String id;
         private String name;
@@ -322,7 +327,6 @@ public class Person extends CommonDomain {
             this.function = function;
             return this;
         }
-
         public Person build() {
             Person person = new Person();
             person.setId(id);
