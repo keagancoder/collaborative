@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
-import BreadCrumbComponent from '../BreadCrumbComponent/BreadCrumbComponent';
+import BreadCrumbComponent from '../../header/BreadCrumbComponent/BreadCrumbComponent';
 import './ThirdLevelComponent.less';
 
 interface ThirdLevelComponentProps { }

@@ -7,8 +7,9 @@ import PieComponent from '../PieComponent/PieComponent'
 import StackLineComponent from '../StackLineComponent/StackLineComponent'
 import VerticalBarComponent from '../VerticalBarComponent/VerticalBarComponent'
 import './ReactGridComponent.less'
-import BreadCrumbComponent from '../BreadCrumbComponent/BreadCrumbComponent'
+import BreadCrumbComponent from '../../header/BreadCrumbComponent/BreadCrumbComponent'
 import { useLocation } from 'react-router-dom'
+import SecondHorizonBarComponent from '../SecondHorizonBarComponent/SecondHorizonBarComponent'
 
 interface ReactGridComponentProps {
   domElements: any[]
@@ -53,11 +54,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
     setCompactType(compactType)
   }
 
-  const [count, setCount] = useState<number>(2)
+  const [count, setCount] = useState<number>(4)
   const [layouts, setLayouts] = useState<ReactGridLayout.Layouts>({
-    lg: _.map(_.range(0, 2), function (i, list) {
+    lg: _.map(_.range(0,4), function (i, list) {
       return {
-        x: 1 * (i),
+        x: i%2,
         y: 0,
         w: 1,
         h: 1,
@@ -66,7 +67,12 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
     })
   })
 
-  const [map, setMap] = useState(new Map())
+  const [map, setMap] = useState(new Map([
+    [0, 'A'],
+    [1, 'C'],
+    [2, 'D'],
+    [3, 'B'],
+  ]) )
   const updateMap = (k: number, v: string) => {
     setMap(new Map(map.set(k, v)))
   }
@@ -121,7 +127,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
           <Dropdown.Item onClick={onAddItemA}>addPie</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemB}>addLine</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemC}>addHorizonBar</Dropdown.Item>
-          <Dropdown.Item onClick={onAddItemD}>addVerticalBar</Dropdown.Item>
+          <Dropdown.Item onClick={onAddItemD}>addSecondHorizonBar</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       </div>
@@ -146,7 +152,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
                 {(!map.get(index) || 'A' === map.get(index)) && (<PieComponent />)}
                 {'B' === map.get(index) && (<StackLineComponent />)}
                 {'C' === map.get(index) && (<HorizonBarComponent />)}
-                {'D' === map.get(index) && (<VerticalBarComponent />)}
+                {'D' === map.get(index) && (<SecondHorizonBarComponent />)}
               </div>
             )
           })
