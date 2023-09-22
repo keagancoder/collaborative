@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public enum DbStatusEnum {
 
-    deleted(0),
-    normal(1);
+    DELETED(0),
+    NORMAL(1);
 
     private final int status;
 

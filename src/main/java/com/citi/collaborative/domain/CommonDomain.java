@@ -17,7 +17,7 @@ public class CommonDomain {
     private String name;
     private String createdTime;
     private String lastModifiedTime;
-    private int status;
+    private String status;
 
     public Optional<String> getTableName() {
         Table tableAnnotation = getClass().getDeclaredAnnotation(Table.class);

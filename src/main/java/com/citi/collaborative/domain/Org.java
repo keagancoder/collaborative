@@ -32,7 +32,7 @@ public class Org extends CommonDomain {
         private String name;
         private String createdTime;
         private String lastModifiedTime;
-        private int status;
+        private String status;
         private String function;
         private String tag;
 
@@ -60,7 +60,7 @@ public class Org extends CommonDomain {
             return this;
         }
 
-        public OrgBuilder status(int status) {
+        public OrgBuilder status(String status) {
             this.status = status;
             return this;
         }

@@ -4,3 +4,8 @@ spring:
     prefix: classpath:/templates/
     cache: false
     suffix: .html
+
+
+server:
+  servlet:
+    context-path: /api

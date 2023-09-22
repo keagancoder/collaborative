@@ -60,7 +60,7 @@ public class Person extends CommonDomain {
         private String name;
         private String createdTime;
         private String lastModifiedTime;
-        private int status;
+        private String status;
         private String cabin;
         private String nameFirst;
         private String nameLast;
@@ -123,7 +123,7 @@ public class Person extends CommonDomain {
             return this;
         }
 
-        public PersonBuilder withStatus(int status) {
+        public PersonBuilder withStatus(String status) {
             this.status = status;
             return this;
         }

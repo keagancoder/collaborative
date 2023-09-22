@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 @SpringBootTest
 public class OrgControllerTest {
 
@@ -32,7 +30,7 @@ public class OrgControllerTest {
                 .tag(Org.Tag.LIFE_SKILLS.name())
                 .id(String.valueOf(System.currentTimeMillis()))
                 .function("medical, dental and mental health counseling")
-                .status(DbStatusEnum.normal.getStatus())
+                .status(DbStatusEnum.NORMAL.name())
                 .build();
 
         Org org2 = Org.builder()
@@ -40,7 +38,7 @@ public class OrgControllerTest {
                 .tag(Org.Tag.ELDERLY.name())
                 .id(String.valueOf(System.currentTimeMillis()))
                 .function("saving accounts, credit counseling services")
-                .status(DbStatusEnum.normal.getStatus())
+                .status(DbStatusEnum.NORMAL.name())
                 .build();
         ResponseMessage<Org> success = ResponseMessage.success(Lists.newArrayList(org, org2));
         LOGGER.info(">> response = {}", JSON.toJSON(success));

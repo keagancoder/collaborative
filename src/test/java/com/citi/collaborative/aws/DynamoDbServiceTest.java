@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DynamoDbServiceTest {
 
@@ -26,7 +27,7 @@ public class DynamoDbServiceTest {
                 .tag(Tag.LIFE_SKILLS.name())
                 .id(String.valueOf(System.currentTimeMillis()))
                 .function("medical, dental and mental health counseling")
-                .status(DbStatusEnum.normal.getStatus())
+                .status(DbStatusEnum.NORMAL.name())
                 .build();
 
         dynamoDbService.putRecord(org);
