@@ -12,5 +12,8 @@ public interface IBaseDao<T extends CommonDomain> {
 
     boolean update(T... objs);
 
-    Collection<T> list(Ops<T> ops,Class<T> type);
+    Collection<T> list(Ops<T> ops, Class<T> type);
+
+    Collection<T> findAll(Class<T> type);
+
 }

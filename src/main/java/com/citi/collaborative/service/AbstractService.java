@@ -45,6 +45,20 @@ public abstract class AbstractService<T extends CommonDomain> implements IBaseSe
         }
     }
 
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public InternalResponse<T> findAll(Class<T> type) {
+        try {
+            return InternalResponse.success(baseDao.findAll(type));
+        } catch (Exception ex) {
+            LOGGER.error(">>> update encounter error", ex);
+            return InternalResponse.fail("Unknown exception");
+        }
+    }
+
     @Autowired
     public void setBaseDao(IBaseDao<T> baseDao) {
         this.baseDao = baseDao;

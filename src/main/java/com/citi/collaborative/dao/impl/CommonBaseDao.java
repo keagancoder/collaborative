@@ -37,4 +37,11 @@ public class CommonBaseDao<E extends CommonDomain> implements IBaseDao<E> {
     public Collection<E> list(Ops<E> ops, Class<E> type) {
         return dynamoDbService.list(ops, type);
     }
+
+    @Override
+    public Collection<E> findAll(Class<E> type) {
+        return dynamoDbService.findAll(type);
+    }
+
+
 }

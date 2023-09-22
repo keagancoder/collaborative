@@ -50,25 +50,36 @@ public class DynamoDbService<T extends CommonDomain> {
         }
     }
 
+    public Collection<T> findAll(Class<T> type) {
+        List<T> results = Lists.newArrayList();
+        DynamoDbTable<T> table = createDynamoDbTable(type);
+        ScanEnhancedRequest enhancedRequest = ScanEnhancedRequest.builder()
+                .build();
+        for (T t : table.scan(enhancedRequest).items()) {
+            results.add(t);
+        }
+        return results;
+    }
+
     public Collection<T> list(Ops<T> op, Class<T> type) {
         List<T> results = Lists.newArrayList();
         try {
             //noinspection
             DynamoDbTable<T> table = createDynamoDbTable(type);
             AttributeValue attr = AttributeValue.builder()
-                    .s(op.getName())
+                    .s(op.getVal())
                     .build();
 
             Map<String, AttributeValue> valMap = Maps.newHashMapWithExpectedSize(4);
             valMap.put(":val1", attr);
             Map<String, String> namesMap = new HashMap<>();
-            namesMap.put("#name", "name");
+            // field name
+            namesMap.put("#column", op.getName());
 
-            // Set the Expression so only Closed items are queried from the Work table.
             Expression expression = Expression.builder()
                     .expressionValues(valMap)
                     .expressionNames(namesMap)
-                    .expression("#archive = :val1")
+                    .expression("#column = :val1")
                     .build();
 
             ScanEnhancedRequest enhancedRequest = ScanEnhancedRequest.builder()
