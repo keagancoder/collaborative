@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.71369629.css",
+    "main.js": "/static/js/main.247f581a.js",
+    "static/js/787.12100658.chunk.js": "/static/js/787.12100658.chunk.js",
+    "index.html": "/index.html",
+    "static/media/SecondLevelComponent.less": "/static/media/SecondLevelComponent.48a1201e2dc2a4e891aa.less",
+    "static/media/VerticalBarComponent.less": "/static/media/VerticalBarComponent.8979ca18688a96f19c59.less",
+    "static/media/BreadCrumbComponent.less": "/static/media/BreadCrumbComponent.7621dae42099da65da81.less",
+    "static/media/HorizonBarComponent.less": "/static/media/HorizonBarComponent.9ee0a9d2675100cd6222.less",
+    "static/media/ThirdLevelComponent.less": "/static/media/ThirdLevelComponent.130af0743fa4809019e6.less",
+    "static/media/ReactGridComponent.less": "/static/media/ReactGridComponent.86ce3a9b703f2d507a40.less",
+    "static/media/StackLineComponent.less": "/static/media/StackLineComponent.401409800db6d6cefa4e.less",
+    "static/media/CommonComponent.less": "/static/media/CommonComponent.3bc5e332ca27978d6515.less",
+    "static/media/PieComponent.less": "/static/media/PieComponent.0ed93b4342e9f14f4ae2.less",
+    "main.71369629.css.map": "/static/css/main.71369629.css.map",
+    "main.247f581a.js.map": "/static/js/main.247f581a.js.map",
+    "787.12100658.chunk.js.map": "/static/js/787.12100658.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71369629.css",
+    "static/js/main.247f581a.js"
+  ]
+}

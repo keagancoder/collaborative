@@ -1,25 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Row, Button, Form, Input, InputNumber, DatePicker, Select, Col, FormInstance } from 'antd';
+import { Row, Button, Form, Input, InputNumber, DatePicker, Select, Col, FormInstance ,message} from 'antd';
 import dayjs from 'dayjs';
-
-const TestUser = { 
-  cabin: '1',
-	nameFirst: "Gerard",
-	nameLast: "Zhang",
-	birth: '1990-10-01',
-	age: 35,
-	gender: 'male',
-	racial: 'yellow',
-	mentalHealthProvider: '',
-	substanceUseDisorderProvider: '',
-	caseManagementStatus: '',
-	need: "need plenty of fooooooooooooood",
-	plan: "fly away",
-	phone: '',
-	organization: ['Community Action Agencies','Pet food'],
-	comments: 'talk less, do more',
-  createDate: '2023-10-01'
-}
 
 export interface CaseDomin {
 	cabin: number,
@@ -46,25 +27,13 @@ const CaseDetail = () => {
   const formRef = useRef<any>(null)
   useEffect(() => {
     formRef.current.setFieldsValue({
-      ...TestUser,
-      birth: dayjs(TestUser.birth),
-      createDate: dayjs(TestUser.createDate) 
+      ...CaseMDetail,
+      birth: dayjs(CaseMDetail.birth),
+      createDate: dayjs(CaseMDetail.createDate) 
     })
   }, [])
 
-  const onFinish = (values: CaseDomin) => { 
-    console.log('Success:', values); 
-    const createDate = dayjs(values.createDate).format('DD/MM/YYYY')
-
-  };
-
-  const handleNameChange = (data: any) => {
-    console.log('name:', data.target.value);
-  }
-
-  const cancelAction = (data: any) => {
-    console.log('name:', data.target.value);
-}
+  
 
   const style = {
     display: 'flex',
@@ -269,4 +238,46 @@ const CaseDetail = () => {
     </div>
   )
 };
+
+const CaseMDetail = { 
+  cabin: '1',
+	nameFirst: "Gerard",
+	nameLast: "Taytay",
+	birth: '1990-10-01',
+	age: 35,
+	gender: 'male',
+	racial: 'yellow',
+	mentalHealthProvider: '',
+	substanceUseDisorderProvider: '',
+	caseManagementStatus: '',
+	need: "need plenty of fooooooooooooood",
+	plan: "fly away",
+	phone: '',
+	organization: ['Community Action Agencies','Pet food'],
+	comments: 'talk less, do more',
+  createDate: '2023-10-01'
+}
+
+const onFinish = (values: CaseDomin) => { 
+  console.log('Success:', values); 
+  const createDate = dayjs(values.createDate).format('DD/MM/YYYY');
+  callApi(values);
+};
+
+const callApi = (data: any) => {
+  fetch('http://localhost:8080/api/person/list/aliganer/elain')
+  .then(response => console.log(response.json()))
+  .catch(error => {
+    console.log('Please check data for case detail.')
+  });
+}
+
+const handleNameChange = (data: any) => {
+  console.log('name:', data.target.value);
+}
+
+const cancelAction = (data: any) => {
+  console.log('name:', data.target.value);
+}
+
 export default CaseDetail;
