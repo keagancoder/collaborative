@@ -1,19 +1,88 @@
 package com.citi.collaborative.domain;
 
-import lombok.Data;
-import lombok.experimental.SuperBuilder;
+import com.citi.collaborative.dao.annotation.Table;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+
+@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@Table("tsc_org")
+@DynamoDbBean
+public class Org extends ICommonDomain {
+
+    private String function;
+    private String tag;
 
 
-@Data
-@SuperBuilder
-public class Org {
+    public enum Tag {
+        EMPLOYMENT, MENTAL_HEALTH_SUPPORT, MEDICAL_CARE, LIFE_SKILLS, ELDERLY, SERVICE_CONNECTIONS, REENTRY
+    }
 
-    private long id;
-    private String name;
-    private Tag tag;
+    public static OrgBuilder builder() {
+        return new OrgBuilder();
+    }
+
+    public static final class OrgBuilder {
+        private String id;
+        private String name;
+        private String createdTime;
+        private String lastModifiedTime;
+        private int status;
+        private String function;
+        private String tag;
+
+        private OrgBuilder() {
+        }
 
 
-    enum Tag{
+        public OrgBuilder id(String id) {
+            this.id = id;
+            return this;
+        }
 
+        public OrgBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public OrgBuilder createdTime(String createdTime) {
+            this.createdTime = createdTime;
+            return this;
+        }
+
+        public OrgBuilder lastModifiedTime(String lastModifiedTime) {
+            this.lastModifiedTime = lastModifiedTime;
+            return this;
+        }
+
+        public OrgBuilder status(int status) {
+            this.status = status;
+            return this;
+        }
+
+        public OrgBuilder function(String function) {
+            this.function = function;
+            return this;
+        }
+
+        public OrgBuilder tag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        public Org build() {
+            Org org = new Org();
+            org.setId(id);
+            org.setName(name);
+            org.setCreatedTime(createdTime);
+            org.setLastModifiedTime(lastModifiedTime);
+            org.setStatus(status);
+            org.setFunction(function);
+            org.setTag(tag);
+            return org;
+        }
     }
 }
