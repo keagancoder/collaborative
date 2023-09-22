@@ -35,7 +35,7 @@ public class Person {
     private String intreatmentForOtherSubstances;
     private String nameOfProvider;
     private String dualDX;
-    private String permanenthousing;
+    private String permanentHousing;
     private String palletVillage;
     private String assertiveCommunityTreatment;
     private String dead;
