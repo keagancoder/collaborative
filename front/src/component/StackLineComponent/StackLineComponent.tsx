@@ -1,23 +1,40 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import './StackLineComponent.less';
 import EChartsReact from 'echarts-for-react';
-import { EventParams } from '../../types';
+import { EventParams, Org } from '../../types';
+import { getOrgs } from '../../service/api';
 
 interface StackLineComponentProps {}
 
 const StackLineComponent: FC<StackLineComponentProps> = () => {
-
+  const [orgs, setOrgs] = useState<Org[]>([])
+  const [orgNames, setOrgNames] = useState<string[]>([])
+  if (orgs.length === 0) {
+    getOrgs().then((res: any) => {
+      setOrgs(res)
+  
+      let temp: string[] = []
+      res.forEach((item:Org) => {
+        if (temp.indexOf(item.name) === -1)
+          {
+            temp.push(item.name)
+          }
+      })
+    setOrgNames(temp)
+    })
+  }
 
   const option = {
     title: {
-      text: 'Stacked Line'
+      text: 'Orgnaztion Statistics'
     },
     tooltip: {
       trigger: 'axis'
     },
     legend: {
-      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+      data: ['orgnaztion visited times']
     },
+
     grid: {
       left: '3%',
       right: '4%',
@@ -32,42 +49,44 @@ const StackLineComponent: FC<StackLineComponentProps> = () => {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      data: orgNames
     },
     yAxis: {
       type: 'value'
     },
-    series: [
+    series: 
+    [
       {
-        name: 'Email',
+        name: 'orgnaztion visited times',
         type: 'line',
         stack: 'Total',
-        data: [120, 132, 101, 134, 90, 230, 210]
+        data: 
+        [120, 132, 101, 134, 90, 230, 210, 222, 23, 58]
       },
-      {
-        name: 'Union Ads',
-        type: 'line',
-        stack: 'Total',
-        data: [220, 182, 191, 234, 290, 330, 310]
-      },
-      {
-        name: 'Video Ads',
-        type: 'line',
-        stack: 'Total',
-        data: [150, 232, 201, 154, 190, 330, 410]
-      },
-      {
-        name: 'Direct',
-        type: 'line',
-        stack: 'Total',
-        data: [320, 332, 301, 334, 390, 330, 320]
-      },
-      {
-        name: 'Search Engine',
-        type: 'line',
-        stack: 'Total',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
-      }
+      // {
+      //   name: 'Union Ads',
+      //   type: 'line',
+      //   stack: 'Total',
+      //   data: [220, 182, 191, 234, 290, 330, 310]
+      // },
+      // {
+      //   name: 'Video Ads',
+      //   type: 'line',
+      //   stack: 'Total',
+      //   data: [150, 232, 201, 154, 190, 330, 410]
+      // },
+      // {
+      //   name: 'Direct',
+      //   type: 'line',
+      //   stack: 'Total',
+      //   data: [320, 332, 301, 334, 390, 330, 320]
+      // },
+      // {
+      //   name: 'Search Engine',
+      //   type: 'line',
+      //   stack: 'Total',
+      //   data: [820, 932, 901, 934, 1290, 1330, 1320]
+      // }
     ]
   };
   const onChartClick = (params: EventParams) => {
@@ -90,9 +109,9 @@ const StackLineComponent: FC<StackLineComponentProps> = () => {
   }
   return (
     <>
-      <EChartsReact option={option}
+      {orgNames.length > 0 && (<EChartsReact option={option}
         onEvents={onEvents}
-      />
+      />)}
     </>
   )
 }

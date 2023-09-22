@@ -1,4 +1,13 @@
 {
+"ts-node": {
+  "compilerOptions": {
+    "module": "CommonJS"
+  },
+  "include": [
+    "src/service/mockData"
+  ]
+},
+
   "compilerOptions": {
     "target": "es5",
     "lib": [

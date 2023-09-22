@@ -1,7 +1,8 @@
 import EChartsReact from 'echarts-for-react';
-import { FC } from 'react';
-import { EventParams } from '../../types';
+import { FC, useState } from 'react';
+import { EventParams, Org } from '../../types';
 import './HorizonBarComponent.less';
+import { getOrgs } from '../../service/api';
 
 interface HorizonBarComponentProps { }
 
@@ -44,7 +45,7 @@ const HorizonBarComponent: FC<HorizonBarComponentProps> = () => {
 
   const option = {
     title: {
-      text: 'Dynamic Data'
+      text: 'Orgnazition Statistics'
     },
     tooltip: {
       trigger: 'axis',
