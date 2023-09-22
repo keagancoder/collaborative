@@ -2,26 +2,22 @@ import React, { FC, useState } from 'react';
 import './StackLineComponent.less';
 import EChartsReact from 'echarts-for-react';
 import { EventParams, Org } from '../../types';
-import { getOrgs } from '../../service/api';
+import getOrgs from '../../service/mockData/getOrgs';
 
 interface StackLineComponentProps {}
 
 const StackLineComponent: FC<StackLineComponentProps> = () => {
   const [orgs, setOrgs] = useState<Org[]>([])
   const [orgNames, setOrgNames] = useState<string[]>([])
-  if (orgs.length === 0) {
-    getOrgs().then((res: any) => {
-      setOrgs(res)
-  
-      let temp: string[] = []
-      res.forEach((item:Org) => {
+  if (orgNames.length === 0) {
+    let temp: string[] = []
+      getOrgs.data.forEach((item:Org) => {
         if (temp.indexOf(item.name) === -1)
           {
             temp.push(item.name)
           }
+        setOrgNames(temp)
       })
-    setOrgNames(temp)
-    })
   }
 
   const option = {
