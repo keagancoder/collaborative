@@ -13,7 +13,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 @DynamoDbBean
 public class Person extends CommonDomain {
 
-    private String id;
+
     private String cabin;
     private String nameFirst;
     private String nameLast;
@@ -21,9 +21,6 @@ public class Person extends CommonDomain {
     private String birthDate;
     private String age;
     private String recial;
-    private String createTime;
-    private String lastModifyTime;
-
     private String inMentalHeathTreatment;
     private String mentalHealthProvider;
     private String medicalServicesUtilized;
@@ -53,8 +50,6 @@ public class Person extends CommonDomain {
     private String achivements;
     private String tag;
     private String function;
-    private String status;
-
 
     public static PersonBuilder builder() {
         return new PersonBuilder();
@@ -342,8 +337,6 @@ public class Person extends CommonDomain {
             person.setBirthDate(birthDate);
             person.setAge(age);
             person.setRecial(recial);
-            person.setCreateTime(createTime);
-            person.setLastModifyTime(lastModifyTime);
             person.setInMentalHeathTreatment(inMentalHeathTreatment);
             person.setMentalHealthProvider(mentalHealthProvider);
             person.setMedicalServicesUtilized(medicalServicesUtilized);
