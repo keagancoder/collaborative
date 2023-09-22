@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom'
 import SecondHorizonBarComponent from '../SecondHorizonBarComponent/SecondHorizonBarComponent'
 import PieForGender from '../PieComponent/PieForGender'
 import HorizonBarForAge from '../HorizonBarComponent/HorizonBarForAge'
+import "react-grid-layout/css/styles.css";
 
 interface ReactGridComponentProps {
   domElements: any[]
@@ -155,7 +156,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
         preventCollision={!compactType}
         onLayoutChange={onLayoutChange}
         onBreakpointChange={onBreakpointChange}
-        isDraggable= {false}
+        isDraggable= {true}
         cols={{lg: 2, md: 2, sm: 2, xs: 2, xxs: 2 }}
       >
         {
