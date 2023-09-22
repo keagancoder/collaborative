@@ -47,7 +47,5 @@ public class Person {
     private String achivements;
     private String tag;
     private String function;
-    private String createTime;
-    private String lastModifiedTime;
     private String status;
 }
