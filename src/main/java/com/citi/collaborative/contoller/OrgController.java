@@ -17,7 +17,8 @@ public class OrgController {
     @GetMapping("list/{name}")
     public ResponseMessage<Org> list(@PathVariable String name) {
         Ops<Org> ops = Ops.<Org>builder()
-                .name(name)
+                .name("name")
+                .val(name)
                 .build();
         return ResponseMessage.success(orgService.findAll(ops, Org.class));
     }
@@ -30,5 +31,10 @@ public class OrgController {
     @GetMapping("recommend/{keyWord}")
     public ResponseMessage<Org> recommend(@PathVariable String keyWord) {
         return ResponseMessage.success(orgService.recommend(keyWord));
+    }
+
+    @GetMapping("list")
+    public ResponseMessage<Org> all() {
+        return ResponseMessage.success(orgService.findAll(Org.class));
     }
 }

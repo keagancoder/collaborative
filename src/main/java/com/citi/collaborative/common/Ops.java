@@ -10,6 +10,8 @@ public class Ops<T> {
 
     String name;
 
+    String val;
+
     String status;
 
     String id;

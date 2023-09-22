@@ -11,4 +11,6 @@ public interface IBaseService<T> {
     InternalResponse<Void> updateMany(T... objs);
 
     InternalResponse<T> findAll(Ops<T> ops, Class<T> type);
+
+    InternalResponse<T> findAll(Class<T> type);
 }
