@@ -10,6 +10,7 @@ import './ReactGridComponent.less'
 import BreadCrumbComponent from '../../header/BreadCrumbComponent/BreadCrumbComponent'
 import { useLocation } from 'react-router-dom'
 import SecondHorizonBarComponent from '../SecondHorizonBarComponent/SecondHorizonBarComponent'
+import PieForGender from '../PieComponent/PieForGender'
 
 interface ReactGridComponentProps {
   domElements: any[]
@@ -68,10 +69,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
   })
 
   const [map, setMap] = useState(new Map([
-    [0, 'A'],
+    [0, 'Gender'],
     [1, 'C'],
     [2, 'D'],
     [3, 'B'],
+    [4, 'Gender']
   ]) )
   const updateMap = (k: number, v: string) => {
     setMap(new Map(map.set(k, v)))
@@ -84,6 +86,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
   const onAddItemA = () => {
     onAddItem()
     updateMap(count, "A")
+  }
+
+  const showGenderPie = () => {
+    onAddItem()
+    updateMap(count, "Gender")
   }
 
   const onAddItemB = () => {
@@ -124,7 +131,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
         <Dropdown.Toggle split id="dropdown-split-basic" />
 
         <Dropdown.Menu variant='dark'>
-          <Dropdown.Item onClick={onAddItemA}>addPie</Dropdown.Item>
+          <Dropdown.Item onClick={showGenderPie}>Gender</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemB}>addLine</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemC}>addHorizonBar</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemD}>addSecondHorizonBar</Dropdown.Item>
@@ -149,10 +156,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
               <div
                 key={item.i}
               >
-                {(!map.get(index) || 'A' === map.get(index)) && (<PieComponent />)}
+                {(!map.get(index) || 'A' === map.get(index)) && (<PieForGender />)}
                 {'B' === map.get(index) && (<StackLineComponent />)}
                 {'C' === map.get(index) && (<HorizonBarComponent />)}
                 {'D' === map.get(index) && (<SecondHorizonBarComponent />)}
+                {'Gender' === map.get(index) && (<PieForGender />)}
               </div>
             )
           })
