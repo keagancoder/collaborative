@@ -11,6 +11,7 @@ public class Person {
     private String nameFirst;
     private String nameLast;
     private String gender;
+    private String birthDate;
     private String age;
     private String recial;
 
@@ -44,4 +45,9 @@ public class Person {
     private String substanceUseAndMentalHealthSupport;
     private String documentationAssistance;
     private String achivements;
+    private String tag;
+    private String function;
+    private String createTime;
+    private String lastModifiedTime;
+    private String status;
 }

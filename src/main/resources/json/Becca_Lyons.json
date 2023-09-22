@@ -1,0 +1,122 @@
+{
+  " id": {
+    "S": "Becca_Lyons_19980820"
+  },
+  " cabin": {
+    "S": "1"
+  },
+  " nameFirst": {
+    "S": "Becca"
+  },
+  " nameLast": {
+    "S": "Lyons"
+  },
+  " gender": {
+    "S": ""
+  },
+  " birthDate": {
+    "S": "19980820"
+  },
+  " age": {
+    "S": ""
+  },
+  " recial": {
+    "S": ""
+  },
+  " inMentalHeathTreatment": {
+    "S": "connecting"
+  },
+  " mentalHealthProvider": {
+    "S": "in need"
+  },
+  " medicalServicesUtilized": {
+    "S": ""
+  },
+  " medicalProviders": {
+    "S": ""
+  },
+  " substanceUseDisorderProvider": {
+    "S": ""
+  },
+  " caseManagementStatus": {
+    "S": ""
+  },
+  " need": {
+    "S": "Life Skills"
+  },
+  " needDetail": {
+    "S": ""
+  },
+  " phone": {
+    "S": "302-313-6028"
+  },
+  " historyOfUse": {
+    "S": "yes"
+  },
+  " currentOpiate": {
+    "S": ""
+  },
+  " otherSubstances": {
+    "S": ""
+  },
+  " previousUser": {
+    "S": "yes"
+  },
+  " inopiateTreatmentAttimeOfResidency": {
+    "S": ""
+  },
+  " intreatmentForOtherSubstances": {
+    "S": ""
+  },
+  " nameOfProvider": {
+    "S": ""
+  },
+  " dualDX": {
+    "S": "yes"
+  },
+  " permanenthousing": {
+    "S": ""
+  },
+  " palletVillage": {
+    "S": ""
+  },
+  " assertiveCommunityTreatment": {
+    "S": ""
+  },
+  " dead": {
+    "S": ""
+  },
+  " longerTermSubstance": {
+    "S": ""
+  },
+  " livveITheVillage": {
+    "S": ""
+  },
+  " exitedProgram": {
+    "S": ""
+  },
+  " substanceUseAndMentalHealthSupport": {
+    "S": ""
+  },
+  " documentationAssistance": {
+    "S": ""
+  },
+  " achivements": {
+    "S": ""
+  },
+  "function": {
+    "S": "details"
+  },
+  "tag": {
+    "S": "EMPLOYMENT, MENTAL_HEALTH_SUPPORT"
+  },
+  "createdTime": {
+    "S": "2023/09/22"
+  },
+  "lastModifiedTime": {
+    "S": "2023/09/22"
+  },
+  "status": {
+    "S": "T"
+  }
+}
