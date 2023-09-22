@@ -13,8 +13,8 @@ const CommonComponent: FC<CommonComponentProps> = () => (
   <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<ReactGridComponent domElements={[]}/>}/> {/* 👈 Renders at /app/ */}
-        <Route path="/secondLevel" element={<SecondLevelComponent dataList={[]}/>}/> {/* 👈 Renders at /app/ */}
-        <Route path="/thirdLevel" element={<ThirdLevelComponent/>}/> {/* 👈 Renders at /app/ */}
+        <Route path="/detail" element={<SecondLevelComponent dataList={[]}/>}/> {/* 👈 Renders at /app/ */}
+        <Route path="/sumbit" element={<ThirdLevelComponent/>}/> {/* 👈 Renders at /app/ */}
       </Routes>
   </BrowserRouter>
     

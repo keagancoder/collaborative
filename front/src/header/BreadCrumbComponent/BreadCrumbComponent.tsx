@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Breadcrumb, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { Breadcrumb, Image, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { BsFillClipboard2DataFill, BsFillGrid3X2GapFill, BsFillHouseFill } from 'react-icons/bs'
 import './BreadCrumbComponent.less'
 
@@ -22,22 +22,28 @@ const BreadCrumbComponent: FC<BreadCrumbComponentProps> = (prop: BreadCrumbCompo
       <Breadcrumb>
         <OverlayTrigger placement="bottom" overlay={tooltip({ comment: 'Homepage' })}  >
           <Breadcrumb.Item href="/" active={'/' === prop.path}>
-            <BsFillHouseFill />
+            <BsFillHouseFill fontSize={'25px'}/>
           </Breadcrumb.Item>
         </OverlayTrigger>
 
-        {('/thirdLevel' === prop.path || '/secondLevel' === prop.path) && (
-          <OverlayTrigger placement="bottom" overlay={tooltip({ comment: 'PersonalGrid' })}  >
-            <Breadcrumb.Item href="/secondLevel" active={'/secondLevel' === prop.path}>
-              <BsFillGrid3X2GapFill />
+        {
+        // ('/detail' === prop.path || '/sumbit' === prop.path) && 
+        (
+          <OverlayTrigger placement="bottom" overlay={tooltip({ comment: 'personal detail' })}  >
+            <Breadcrumb.Item href="/detail" active={'/detail' === prop.path}>
+              <BsFillGrid3X2GapFill fontSize={'25px'}/>
             </Breadcrumb.Item>
           </OverlayTrigger>
         )
         }
 
-        {'/thirdLevel' === prop.path && (
-          <OverlayTrigger placement="bottom" overlay={tooltip({ comment: 'PersonalForm' })}  >
-            <Breadcrumb.Item href="/thirdLevel" active={'/thirdLevel' === prop.path}><BsFillClipboard2DataFill /></Breadcrumb.Item>
+        {
+        // '/sumbit' === prop.path && 
+        (
+          <OverlayTrigger placement="bottom" overlay={tooltip({ comment: 'sumbit form' })}  >
+            <Breadcrumb.Item href="/sumbit" active={'/sumbit' === prop.path}>
+              <BsFillClipboard2DataFill fontSize={'25px'}/>
+              </Breadcrumb.Item>
           </OverlayTrigger>
         )
         }
