@@ -13,6 +13,7 @@ import SecondHorizonBarComponent from '../SecondHorizonBarComponent/SecondHorizo
 import PieForGender from '../PieComponent/PieForGender'
 import HorizonBarForAge from '../HorizonBarComponent/HorizonBarForAge'
 import "react-grid-layout/css/styles.css";
+import SecondHorizonBarForRace from '../SecondHorizonBarComponent/SecondHorizonBarForRace'
 
 interface ReactGridComponentProps {
   domElements: any[]
@@ -73,10 +74,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
   const [map, setMap] = useState(new Map([
     [0, 'Gender'],
     [1, 'Age'],
-    [2, 'D'],
+    [2, 'Race'],
     [3, 'B'],
     [4, 'Gender'],
-    [5, 'Age']
+    [5, 'Age'],
+    [6, 'Race']
   ]) )
   const updateMap = (k: number, v: string) => {
     setMap(new Map(map.set(k, v)))
@@ -100,6 +102,12 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
     onAddItem()
     updateMap(count, "Age")
   }
+
+ const showRaceChart = () => {
+    onAddItem()
+    updateMap(count, "Race")
+  }
+
 
   const onAddItemB = () => {
     onAddItem()
@@ -142,6 +150,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
           <Dropdown.Item onClick={showGenderPie}>Gender</Dropdown.Item>
           <Dropdown.Item onClick={showAgeChart}>Age</Dropdown.Item>
           <Dropdown.Item onClick={showAgeChart}>chart3</Dropdown.Item>
+          <Dropdown.Item onClick={showRaceChart}>Race</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemB}>Orgnazition</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemD}>addSecondHorizonBar</Dropdown.Item>
         </Dropdown.Menu>
@@ -171,6 +180,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
                 {'D' === map.get(index) && (<SecondHorizonBarComponent />)}
                 {'Gender' === map.get(index) && (<PieForGender />)}
                 {'Age' === map.get(index) && (<HorizonBarForAge />)}
+                {'Race' === map.get(index) && (<SecondHorizonBarForRace />)}
               </div>
             )
           })
