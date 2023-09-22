@@ -1,0 +1,92 @@
+// @use '../style/value.scss';
+
+// .table {
+//     :global(.ant-table){
+//         border-radius: 4px;
+//         box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+//                     rgb(0 0 0 / 14%) 0px 1px 1px 0px,
+//                     rgb(0 0 0 / 12%) 0px 1px 3px 0px,
+//     }
+//     .table {
+//         border-radius: none;
+//         box-shadow: none;
+//     }
+//     :global(.ant-table-thead > tr > th) {
+//         max-width: 16em;
+//         padding: 10px 16px 8px;
+//         color: value.$commonColor;
+//         :global(.headerTextPure){
+//             display: inline-block;
+//             margin-bottom: 30px;
+//         }
+//         :global(.ant-select) {
+//             :global(.ant-select-selector .ant-select-selection-item) {
+//                 padding-right: 0;
+//             }
+//             :global(.ant-select-arrow) {
+//                 display: none;
+//             }
+//         }
+//     }
+//     :global(.ant-table-tbody > tr > td) {
+//         padding: {
+//             top: 8px;
+//             bottom: 8px;
+//         };
+//         max-width: 18em;
+//     }
+//     :global(.ant-table-tbody > tr.ant-table-row:hover > td),
+//     :global(.ant-table-tbody > tr > td.ant-table-cell-row-hover) {
+//         background-color: #d9eefb;
+//     }
+//     :global(.ant-table-column-sorters) {
+//         align-items: flex-start;
+//     }
+//     :global(.ant-table-column-sorter) {
+//     margin-top: 2px;
+//     }
+//     :global(.ant-input-affix-wrapper-sm) { 
+//         padding: 0 2px;
+//     }
+//     :global(.ant-input-suffix) {
+//     margin-left: 2px;
+//     }
+//     :global(.ant-input-group-wrapper) {
+//     margin-left: -25px; 
+//     padding-left: 24px;
+//     }
+//     :global(.ant-picker) {
+//     height: 24px;
+//     padding-left: 5px;
+//     }
+//     :global(.ant-picker-input) {
+//     width: 80px;
+//     }
+//     :global(.ant-space-vertical) {
+//     gap: 4px !important;
+//     }
+//     :global(.ant-checkbox-inner),
+//     :global(.ant-checkbox-disabled .ant-checkbox-inner){
+//     border-color: value.$commonBorderColor;
+//     }
+//     :global(.ant-checkbox-checked .ant-checkbox-inner),
+//     :global(.ant-checkbox-indeterminate .ant-checkbox-inner::after) { 
+//         background-color: value.$activeColor;
+//     }
+//     :global(.ant-table-ping-left:not(.ant-table-has-fix-left) > .ant-table-container::before) {
+//     box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 5%);
+//     }
+//     :global(.ant-table-ping-right:not(.ant-table-has-fix-right) > .ant-table-container::after) {
+//         box-shadow: none;
+//     }
+// }
+// :global(.table-filter-relation .ant-select-item) { 
+//     padding: 5px 7px;
+// }
+
+// .freezeHeader {
+//     @extend .table;
+//     :global(.ant-table-thead) {
+//         pointer-events: none;
+//     }
+// }
