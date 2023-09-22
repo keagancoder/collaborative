@@ -1,3 +1,16 @@
+export interface Org {
+  id: string,
+  name: string,
+  createTime?: Date,
+  lastModifiedTime?: Date,
+  status: string,
+  function: string,
+  tag: string,
+  tableName: {
+    empty: boolean,
+    present: boolean,
+  }
+}
 export interface EventParams {
     // The component name clicked,
     // component type, could be 'series'、'markLine'、'markPoint'、'timeLine', etc..
