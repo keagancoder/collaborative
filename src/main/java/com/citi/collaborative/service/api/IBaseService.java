@@ -1,13 +1,14 @@
 package com.citi.collaborative.service.api;
 
 
-import java.util.Collection;
+import com.citi.collaborative.common.InternalResponse;
+import com.citi.collaborative.common.Ops;
 
 public interface IBaseService<T> {
 
-    boolean saveMany(T... objs);
+    InternalResponse<Void> saveMany(T... objs);
 
-    boolean updateMany(T... objs);
+    InternalResponse<Void> updateMany(T... objs);
 
-    Collection<T> findAll();
+    InternalResponse<T> findAll(Ops<T> ops, Class<T> type);
 }

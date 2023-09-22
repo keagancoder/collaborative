@@ -4,6 +4,7 @@ import com.citi.collaborative.dao.annotation.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 
 @EqualsAndHashCode(callSuper = true)
@@ -11,7 +12,8 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 @Setter
 @Table("tsc_org")
 @DynamoDbBean
-public class Org extends ICommonDomain {
+@ToString
+public class Org extends CommonDomain {
 
     private String function;
     private String tag;
@@ -30,7 +32,7 @@ public class Org extends ICommonDomain {
         private String name;
         private String createdTime;
         private String lastModifiedTime;
-        private int status;
+        private String status;
         private String function;
         private String tag;
 
@@ -58,7 +60,7 @@ public class Org extends ICommonDomain {
             return this;
         }
 
-        public OrgBuilder status(int status) {
+        public OrgBuilder status(String status) {
             this.status = status;
             return this;
         }

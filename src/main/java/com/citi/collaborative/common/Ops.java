@@ -1,10 +1,10 @@
 package com.citi.collaborative.common;
 
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+@Builder
 @Getter
 public class Ops<T> {
 
