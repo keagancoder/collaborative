@@ -132,7 +132,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
 
         <Dropdown.Menu variant='dark'>
           <Dropdown.Item onClick={showGenderPie}>Gender</Dropdown.Item>
-          <Dropdown.Item onClick={onAddItemB}>addLine</Dropdown.Item>
+          <Dropdown.Item onClick={onAddItemB}>Orgnazition</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemC}>addHorizonBar</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemD}>addSecondHorizonBar</Dropdown.Item>
         </Dropdown.Menu>
