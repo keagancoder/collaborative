@@ -13,6 +13,10 @@ public class Person {
     private String gender;
     private String age;
     private String recial;
+
+    private String createTime;
+    private String lastModifyTime;
+
     private String inMentalHeathTreatment;
     private String mentalHealthProvider;
     private String medicalServicesUtilized;
