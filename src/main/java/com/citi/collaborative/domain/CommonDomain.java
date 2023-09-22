@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Getter
 @Setter
-public abstract class ICommonDomain {
+public class CommonDomain {
 
     private String id;
     private String name;

@@ -1,16 +1,20 @@
 package com.citi.collaborative.dao;
 
-import com.citi.collaborative.DateUtil;
 import com.citi.collaborative.common.Ops;
 import com.citi.collaborative.common.TSCRuntimeException;
 import com.citi.collaborative.dao.annotation.Table;
+import com.citi.collaborative.domain.CommonDomain;
+import com.citi.collaborative.util.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import software.amazon.awssdk.enhanced.dynamodb.*;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.Expression;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
 import software.amazon.awssdk.regions.Region;
@@ -18,12 +22,13 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class DynamoDbService<T extends com.citi.collaborative.domain.ICommonDomain> {
+public class DynamoDbService<T extends CommonDomain> {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DynamoDbService.class);
     public static final String AWS_INTERNAL_ERROR = "AWS DynamoDb internal error";
@@ -35,35 +40,21 @@ public class DynamoDbService<T extends com.citi.collaborative.domain.ICommonDoma
                 .build();
     }
 
-    // Archives an item based on the key.
     public void update(Ops<T> op) {
         try {
-            DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
-                    .dynamoDbClient(getClient())
-                    .build();
-
             //noinspection unchecked
-            DynamoDbTable<T> workTable = createDynamoDbTable(op.getData());
-
-            //Get the Key object.
-            Key key = Key.builder()
-                    .partitionValue(op.getId())
-                    .build();
-
-            // Get the item by using the key.
+            DynamoDbTable<T> workTable = createDynamoDbTable((Class<T>) op.getData().getClass());
             workTable.updateItem(r -> r.item(op.getData()));
-
         } catch (DynamoDbException e) {
             throw new TSCRuntimeException(AWS_INTERNAL_ERROR, e);
         }
     }
 
-
-    public List<T> list(Ops<T> op) {
+    public Collection<T> list(Ops<T> op, Class<T> type) {
         List<T> results = Lists.newArrayList();
         try {
-            //noinspection unchecked
-            DynamoDbTable<T> table = createDynamoDbTable(op.getData());
+            //noinspection
+            DynamoDbTable<T> table = createDynamoDbTable(type);
             AttributeValue attr = AttributeValue.builder()
                     .s(op.getName())
                     .build();
@@ -100,26 +91,24 @@ public class DynamoDbService<T extends com.citi.collaborative.domain.ICommonDoma
     public void putRecord(T data) {
         try {
             //noinspection unchecked
-            DynamoDbTable<T> workTable = createDynamoDbTable(data);
+            DynamoDbTable<T> workTable = createDynamoDbTable((Class<T>) data.getClass());
             data.setCreatedTime(DateUtil.now());
             data.setLastModifiedTime(DateUtil.now());
             workTable.putItem(data);
+            LOGGER.info(">>> domain [{}] saved successfully", data);
         } catch (Exception e) {
             throw new TSCRuntimeException(AWS_INTERNAL_ERROR, e);
         }
     }
 
 
-    protected DynamoDbTable<T> createDynamoDbTable(T data) {
-        //noinspection unchecked
-        Class<T> clz = (Class<T>) data.getClass();
+    protected DynamoDbTable<T> createDynamoDbTable(Class<T> clz) {
         validate(clz);
         DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
                 .dynamoDbClient(getClient())
                 .build();
         // Create a DynamoDbTable object.
-        //noinspection OptionalGetWithoutIsPresent
-        return enhancedClient.table(data.getTableName().get(), TableSchema.fromBean(clz));
+        return enhancedClient.table(clz.getDeclaredAnnotation(Table.class).value(), TableSchema.fromBean(clz));
     }
 
     private void validate(Class<T> clz) {

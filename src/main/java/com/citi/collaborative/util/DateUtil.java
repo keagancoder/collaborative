@@ -1,4 +1,4 @@
-package com.citi.collaborative;
+package com.citi.collaborative.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

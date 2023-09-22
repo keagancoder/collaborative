@@ -1,31 +1,48 @@
 package com.citi.collaborative.service;
 
+import com.citi.collaborative.common.InternalResponse;
+import com.citi.collaborative.common.Ops;
 import com.citi.collaborative.dao.IBaseDao;
+import com.citi.collaborative.domain.CommonDomain;
 import com.citi.collaborative.service.api.IBaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
+@SuppressWarnings("unchecked")
+public abstract class AbstractService<T extends CommonDomain> implements IBaseService<T> {
 
-/**
- * @author william
- * @title
- * @desc
- * @date 2023/9/22
- **/
-public abstract class AbstractService<T> implements IBaseService<T> {
+    public static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
 
     private IBaseDao<T> baseDao;
 
-    public boolean saveMany(T...targets){
-        return baseDao.save(targets);
+    public InternalResponse<Void> saveMany(T... targets) {
+        try {
+            baseDao.save(targets);
+            return InternalResponse.success(null);
+        } catch (Exception ex) {
+            LOGGER.error(">>> save encounter error", ex);
+            return InternalResponse.fail("Unknown exception");
+        }
     }
 
-    public boolean updateMany(T...targets){
-        return baseDao.update(targets);
+    public InternalResponse<Void> updateMany(T... targets) {
+        try {
+            baseDao.update(targets);
+            return InternalResponse.success(null);
+        } catch (Exception ex) {
+            LOGGER.error(">>> update encounter error", ex);
+            return InternalResponse.fail("Unknown exception");
+        }
     }
 
-    public Collection<T> findAll(){
-        return baseDao.list(null);
+    public InternalResponse<T> findAll(Ops<T> ops, Class<T> type) {
+        try {
+            return InternalResponse.success(baseDao.list(ops, type));
+        } catch (Exception ex) {
+            LOGGER.error(">>> update encounter error", ex);
+            return InternalResponse.fail("Unknown exception");
+        }
     }
 
     @Autowired

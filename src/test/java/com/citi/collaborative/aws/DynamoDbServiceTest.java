@@ -1,24 +1,23 @@
 package com.citi.collaborative.aws;
 
 import com.citi.collaborative.common.DbStatusEnum;
+import com.citi.collaborative.common.Ops;
 import com.citi.collaborative.dao.DynamoDbService;
 import com.citi.collaborative.domain.Org;
 import com.citi.collaborative.domain.Org.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Collection;
 
-@SpringBootTest
+import static org.junit.jupiter.api.Assertions.*;
+
 public class DynamoDbServiceTest {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DynamoDbServiceTest.class);
 
-    @Autowired
-    private DynamoDbService<Org> dynamoDbService;
+    private final DynamoDbService<Org> dynamoDbService = new DynamoDbService<>();
 
     @Test
     public void testPutOrgRecord() {
@@ -32,6 +31,15 @@ public class DynamoDbServiceTest {
 
         dynamoDbService.putRecord(org);
         assertNotNull(org);
+    }
+
+    @Test
+    public void testListRecords() {
+        Ops<Org> ops = Ops.<Org>builder()
+                .name("Health Centers")
+                .build();
+        Collection<Org> list = dynamoDbService.list(ops, Org.class);
+        assertTrue(list.size() > 0);
     }
 
 
