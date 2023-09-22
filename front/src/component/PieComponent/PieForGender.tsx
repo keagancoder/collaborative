@@ -7,6 +7,9 @@ interface PieComponentProps { }
 
 const PieForGender: FC<PieComponentProps> = () => {
   const option = {
+    title: {
+      text: 'Gender'
+    },
     tooltip: {
       trigger: 'item'
     },

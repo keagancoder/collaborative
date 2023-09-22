@@ -11,6 +11,7 @@ import BreadCrumbComponent from '../../header/BreadCrumbComponent/BreadCrumbComp
 import { useLocation } from 'react-router-dom'
 import SecondHorizonBarComponent from '../SecondHorizonBarComponent/SecondHorizonBarComponent'
 import PieForGender from '../PieComponent/PieForGender'
+import HorizonBarForAge from '../HorizonBarComponent/HorizonBarForAge'
 
 interface ReactGridComponentProps {
   domElements: any[]
@@ -70,10 +71,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
 
   const [map, setMap] = useState(new Map([
     [0, 'Gender'],
-    [1, 'C'],
+    [1, 'Age'],
     [2, 'D'],
     [3, 'B'],
-    [4, 'Gender']
+    [4, 'Gender'],
+    [5, 'Age']
   ]) )
   const updateMap = (k: number, v: string) => {
     setMap(new Map(map.set(k, v)))
@@ -91,6 +93,11 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
   const showGenderPie = () => {
     onAddItem()
     updateMap(count, "Gender")
+  }
+
+  const showAgeChart = () => {
+    onAddItem()
+    updateMap(count, "Age")
   }
 
   const onAddItemB = () => {
@@ -132,8 +139,8 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
 
         <Dropdown.Menu variant='dark'>
           <Dropdown.Item onClick={showGenderPie}>Gender</Dropdown.Item>
-          <Dropdown.Item onClick={onAddItemB}>addLine</Dropdown.Item>
-          <Dropdown.Item onClick={onAddItemC}>addHorizonBar</Dropdown.Item>
+          <Dropdown.Item onClick={showAgeChart}>Age</Dropdown.Item>
+          <Dropdown.Item onClick={showAgeChart}>chart3</Dropdown.Item>
           <Dropdown.Item onClick={onAddItemD}>addSecondHorizonBar</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
@@ -161,6 +168,7 @@ const ReactGridComponent: FC<ReactGridComponentProps> = (props: ReactGridCompone
                 {'C' === map.get(index) && (<HorizonBarComponent />)}
                 {'D' === map.get(index) && (<SecondHorizonBarComponent />)}
                 {'Gender' === map.get(index) && (<PieForGender />)}
+                {'Age' === map.get(index) && (<HorizonBarForAge />)}
               </div>
             )
           })
